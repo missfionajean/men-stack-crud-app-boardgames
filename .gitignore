@@ -1,2 +1,5 @@
+# env file for sensitive information
 .env
+
+# node modules directory for installed dependency files
 node_modules
