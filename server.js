@@ -35,7 +35,7 @@ mongoose.connection.on("connected", () => {
 });
 
 // import fruit DB model for local use (CRUD functionality)
-const game = require("./models/game.ejs");
+const game = require("./models/game.js");
 
 /* ----------------------------------------------------------- */
 /* ----------------------- Express.use ----------------------- */
@@ -56,7 +56,7 @@ app.use(express.static(path.join(__dirname, "public")));
 /* ----------------------------------------------------------- */
 
 // easily modifiable server port
-const PORT = 3001
+const PORT = 3001;
 
 // connecting express to server port
 app.listen(PORT, () => {
@@ -67,3 +67,7 @@ app.listen(PORT, () => {
 /* --------------------------- HTTP -------------------------- */
 /* ----------------------------------------------------------- */
 
+// GET request; "/" (home page)
+app.get("/", (req, res) => {
+	res.send("Hello world!");
+});
