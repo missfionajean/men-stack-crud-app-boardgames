@@ -35,7 +35,7 @@ mongoose.connection.on("connected", () => {
 });
 
 // import fruit DB model for local use (CRUD functionality)
-const game = require("./models/game.js");
+const Game = require("./models/game.js");
 
 /* ----------------------------------------------------------- */
 /* ----------------------- Express.use ----------------------- */
@@ -67,7 +67,57 @@ app.listen(PORT, () => {
 /* --------------------------- HTTP -------------------------- */
 /* ----------------------------------------------------------- */
 
+/* HOME PAGE */
+
 // GET request; "/" (home page)
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
+	// renders home page, async - database connection in BG
 	res.render("home.ejs");
+});
+
+/* GAME LIST */
+
+// GET request; "/games" (full game list; filters in future)
+app.get("/games", async (req, res) => {
+	// renders index template, async - pulls from database
+	res.render("games/index.ejs");
+});
+
+/* ADD NEW GAME */
+
+// GET request; "/games/add" (add game form)
+app.get("/games/add", (req, res) => {
+	// renders "new game" form, not async - no DB interaction
+	res.render("games/add.ejs");
+});
+
+/* SHOW PAGES */
+
+// GET request; "/games/:gameId" (show pages)
+app.get("/games/:gameId", async (req, res) => {
+	// grabs game by ID and stores in variable
+	const foundGame = await Game.findById(req.params.gameId);
+	// renders edit page with "game" as variable holding properties
+	res.render("games/show.ejs", { game: foundGame });
+});
+
+/* EDIT EXISTING GAME */
+
+// GET request; "/games/:gameId/edit" (edit game entry)
+app.get("/games/:gameId/edit", async (req, res) => {
+	// identical to show page GET, except EJS template is different
+	const foundGame = await Game.findById(req.params.gameId);
+	res.render("games/edit.ejs", { game: foundGame });
+});
+
+// NEEDS A PUT REQUEST TO TAKE FORM DATA AND PUSH TO DATABASE
+
+/* DELETE EXISTING GAME */
+
+// GET request; "/games/:gameId" (show pages)
+app.delete("/games/:gameId", async (req, res) => {
+	// locates game by unique database ID and deletes
+	await Game.findByIdAndDelete(req.params.gameId);
+	// redirects back to full game list
+	res.redirect("games/index.ejs");
 });
