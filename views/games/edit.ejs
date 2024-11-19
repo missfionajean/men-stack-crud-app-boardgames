@@ -18,37 +18,61 @@
         <label for="minPlayers">Min Players </label>
         <select name="minPlayers" id="minPlayers" value="<%= minPlayers %>">
             <% for (let i = 1; i < 13; i++) { %>
-            <option value="<%= i %>"
-                <% if (i == minPlayers) { %>
+                <option value="<%= i %>"
+                <% if (i.toString() == minPlayers) { %>
                 selected
                 <% } %>
                 >
-                    <%= i %>
+                    <%= i.toString() %>
                 </option>
-                <% } %>
-            <option value="13+">13+</option>
+            <% } %>
+            <option value="13+"
+            <% if (minPlayers === "13+") { %>
+            selected
+            <% } %>
+            >
+                13+
+            </option>
         </select>
         <label for="maxPlayers">Max Players </label>
         <select name="maxPlayers" id="maxPlayers">
             <% for (let i = 1; i < 13; i++) { %>
-            <option value="<%= i %>"
-            <% if (i == maxPlayers) { %>
-            selected
-            <% } %>    
-            >
-                <%= i %>
-            </option>
+                <option value="<%= i %>"
+                <% if (i.toString() == maxPlayers) { %>
+                selected
+                <% } %>
+                >
+                    <%= i.toString() %>
+                </option>
             <% } %>
-            <option value="13+">13+</option>
+            <option value="13+"
+            <% if (maxPlayers === "13+") { %>
+            selected
+            <% } %>
+            >
+                13+
+            </option>
         </select>
 
         <!-- play time entry (drop downs) -->
         <label for="playTime">Average Play Time (Minutes) </label>
         <select name="playTime" id="playTime">
             <% for (let i = 15; i < 240; i += 15) { %>
-            <option value="<%= i %>"><%= i %></option>
-            <% } %>
-            <option value="240+">240+</option>
+                <option value="<%= i %>"
+                    <% if (i.toString() == playTime) { %>
+                    selected
+                    <% } %>
+                    >
+                        <%= i.toString() %>
+                    </option>
+                <% } %>
+                <option value="240+"
+                <% if (playTime === "240+") { %>
+                selected
+                <% } %>
+                >
+                    240+
+                </option>
         </select>
 
         <!-- about game entry (text box) -->

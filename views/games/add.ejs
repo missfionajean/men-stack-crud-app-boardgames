@@ -17,14 +17,14 @@
 			<label for="minPlayers">Min Players </label>
 			<select name="minPlayers" id="minPlayers">
                 <% for (let i = 1; i < 13; i++) { %>
-                <option value="<%= i %>"><%= i %></option>
+                    <option value="<%= i %>"><%= i.toString() %></option>
                 <% } %>
                 <option value="13+">13+</option>
             </select>
             <label for="maxPlayers">Max Players </label>
 			<select name="maxPlayers" id="maxPlayers">
                 <% for (let i = 1; i < 13; i++) { %>
-                <option value="<%= i %>"><%= i %></option>
+                    <option value="<%= i %>"><%= i.toString() %></option>
                 <% } %>
                 <option value="13+">13+</option>
             </select>
@@ -33,7 +33,7 @@
             <label for="playTime">Average Play Time (Minutes) </label>
 			<select name="playTime" id="playTime">
                 <% for (let i = 15; i < 240; i += 15) { %>
-                <option value="<%= i %>"><%= i %></option>
+                    <option value="<%= i %>"><%= i.toString() %></option>
                 <% } %>
                 <option value="240+">240+</option>
             </select>

@@ -4,9 +4,9 @@ const mongoose = require("mongoose");
 // defining schema for each board game
 const gameSchema = new mongoose.Schema({
 	gameName: String,
-	minPlayers: Number,
-	maxPlayers: Number,
-	playTime: Number,
+	minPlayers: String,
+	maxPlayers: String,
+	playTime: String,
     aboutGame: String,
 	beginnerFriendly: Boolean,
 });
