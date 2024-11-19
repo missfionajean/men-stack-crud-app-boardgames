@@ -79,8 +79,10 @@ app.get("/", async (req, res) => {
 
 // GET request; "/games" (full game list; filters in future)
 app.get("/games", async (req, res) => {
-	// renders index template, async - pulls from database
-	res.render("games/index.ejs");
+	// pulls all games from database (await so it won't move on)
+	const allGames = await Game.find();
+	// renders index template
+	res.render("games/index.ejs", { games: allGames });
 });
 
 /* ADD NEW GAME */
@@ -89,6 +91,14 @@ app.get("/games", async (req, res) => {
 app.get("/games/add", (req, res) => {
 	// renders "new game" form, not async - no DB interaction
 	res.render("games/add.ejs");
+});
+
+// POST request; "/games" (behind the scenes operation)
+app.post("/games", async (req, res) => {
+	// uses form data to fill in schema (no var needed)
+	await Game.create(req.body);
+	// renders "new game" form, not async - no DB interaction
+	res.redirect("/games");
 });
 
 /* SHOW PAGES */
@@ -114,7 +124,7 @@ app.get("/games/:gameId/edit", async (req, res) => {
 
 /* DELETE EXISTING GAME */
 
-// GET request; "/games/:gameId" (show pages)
+// GET request; "/games/:gameId" (show pages) [method-override]
 app.delete("/games/:gameId", async (req, res) => {
 	// locates game by unique database ID and deletes
 	await Game.findByIdAndDelete(req.params.gameId);

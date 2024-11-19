@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="../css/style.css" />
+		<title>Add Game</title>
+	</head>
+	<body>
+		<form action="/games" method="POST">
+			<!-- game name entry (text) -->
+			<label for="name">Game Name </label>
+			<input type="text" name="gameName" id="gameName" />
+
+			<!-- player count entry (drop downs) -->
+			<label for="minPlayers">Min Players </label>
+			<select name="minPlayers" id="minPlayers">
+                <% for (let i = 1; i < 13; i++) { %>
+                <option value="<%= i %>"><%= i %></option>
+                <% } %>
+                <option value="13+">13+</option>
+            </select>
+            <label for="maxPlayers">Max Players </label>
+			<select name="maxPlayers" id="maxPlayers">
+                <% for (let i = 1; i < 13; i++) { %>
+                <option value="<%= i %>"><%= i %></option>
+                <% } %>
+                <option value="13+">13+</option>
+            </select>
+
+            <!-- play time entry (drop downs) -->
+            <label for="playTime">Average Play Time (Minutes) </label>
+			<select name="playTime" id="playTime">
+                <% for (let i = 15; i < 240; i += 15) { %>
+                <option value="<%= i %>"><%= i %></option>
+                <% } %>
+                <option value="240+">240+</option>
+            </select>
+
+            <!-- about game entry (text box) -->
+            <label for="aboutGame">Brief Game Description </label>
+            <textarea name="aboutGame" id="aboutGame"></textarea>
+
+            <!-- beginner friendly entry (checkbox) -->
+            <label for="beginnerFriendly">Is this game beginner friendly? </label>
+            <input type="checkbox" name="beginnerFriendly" id="beginnerFriendly" />
+		</form>
+	</body>
+</html>
+
+<!-- 
+SCHEMA REFERENCE:
+
+// defining schema for each board game
+const gameSchema = new mongoose.Schema({
+	gameName: String,
+	minPlayers: Number,
+	maxPlayers: Number,
+	playTime: Number,
+    aboutGame: String,
+	beginnerFriendly: Boolean,
+});
+
+-->

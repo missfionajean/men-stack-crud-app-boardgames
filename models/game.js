@@ -3,12 +3,12 @@ const mongoose = require("mongoose");
 
 // defining schema for each board game
 const gameSchema = new mongoose.Schema({
-	name: String,
+	gameName: String,
 	minPlayers: Number,
 	maxPlayers: Number,
 	playTime: Number,
-	mechanics: Array,
-	advanced: Boolean,
+    aboutGame: String,
+	beginnerFriendly: Boolean,
 });
 
 // exporting model for use in other files

@@ -3,11 +3,16 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="./css/style.css" />
-		<title>Game Index</title>
+		<link rel="stylesheet" href="../css/style.css" />
+		<title>Game Collection</title>
 	</head>
 	<body>
-        <h1>Game Index</h1>
-        <p>This is a page that will list all the games in the collection. It will allow adding games and further filtering. Editing and deleting an entry will be on the show page for the game.</p>
+        <h1>The Hoard</h1>
+        <p>Check out the board games currently in our collection:</p>
+		<% games.forEach( (game) => { %>
+		<li>
+			<a href="/games/<%= game._id %>"><%= game.name %></a>
+		</li>
+		<% }) %>
     </body>
 </html>
