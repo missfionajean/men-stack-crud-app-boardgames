@@ -22,8 +22,14 @@
         <p>No</p>
         <% } %>
     </div>
-    <a href="/games/<%= _id %>/edit">Edit/Delete Game</a>
-    <a href="/games">Back to The Hoard</a>
+    <div class="button-box">
+        <form action="/games/<%= _id %>/edit">
+            <button type="submit">Edit/Delete Game</button>
+        </form>
+        <form action="/games">
+            <button type="submit">Back To Hoard</button>
+        </form>
+    </div>
 </body>
 </html>
 

@@ -1,5 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Almendra:ital,wght@0,400;0,700;1,400;1,700&family=Texturina:ital,opsz,wght@0,12..72,100..900;1,12..72,100..900&display=swap');
+
 * {
 	box-sizing: border-box;
     color: white;
-    background-color: black;
+    background-color: darkslategray;
+    font-family: "Almendra", sans-serif;
+    font-weight: 400;
+}
+
+h1 {
+    font-size: 40px;
+}
+
+a {
+    text-decoration: none;
+}
+
+p, label, input {
+    font-family: "Texturina", sans-serif;
+}
+
+input {
+    
+}
+
+.button-box {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+button {
+    width: 200px;
+    height: 50px;
+}
+
+a:hover, button:hover {
+    cursor: pointer;
+    color: indianred;
+}
+
+.data-entry {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
