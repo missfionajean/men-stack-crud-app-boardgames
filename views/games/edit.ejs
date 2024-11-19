@@ -4,9 +4,88 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css" />
-    <title>Edit: <%= game.name %></title>
+    <title>Edit: <%= gameName %></title>
 </head>
 <body>
-    
+    <h1>Enter Game Details</h1>
+    <!-- using method-override for PUT and DELETE -->
+    <form action="/games/<%=_id%>?_method=PUT" method="POST">
+        <!-- game name entry (text) -->
+        <label for="name">Game Name </label>
+        <input type="text" name="gameName" id="gameName" value="<%= gameName %>" />
+
+        <!-- player count entry (drop downs) -->
+        <label for="minPlayers">Min Players </label>
+        <select name="minPlayers" id="minPlayers" value="<%= minPlayers %>">
+            <% for (let i = 1; i < 13; i++) { %>
+            <option value="<%= i %>"
+                <% if (i == minPlayers) { %>
+                selected
+                <% } %>
+                >
+                    <%= i %>
+                </option>
+                <% } %>
+            <option value="13+">13+</option>
+        </select>
+        <label for="maxPlayers">Max Players </label>
+        <select name="maxPlayers" id="maxPlayers">
+            <% for (let i = 1; i < 13; i++) { %>
+            <option value="<%= i %>"
+            <% if (i == maxPlayers) { %>
+            selected
+            <% } %>    
+            >
+                <%= i %>
+            </option>
+            <% } %>
+            <option value="13+">13+</option>
+        </select>
+
+        <!-- play time entry (drop downs) -->
+        <label for="playTime">Average Play Time (Minutes) </label>
+        <select name="playTime" id="playTime">
+            <% for (let i = 15; i < 240; i += 15) { %>
+            <option value="<%= i %>"><%= i %></option>
+            <% } %>
+            <option value="240+">240+</option>
+        </select>
+
+        <!-- about game entry (text box) -->
+        <label for="aboutGame">Brief Game Description </label>
+        <textarea name="aboutGame" id="aboutGame"><%= aboutGame %></textarea>
+
+        <!-- beginner friendly entry (checkbox) -->
+        <label for="beginnerFriendly">Is this game beginner friendly? </label>
+        <input type="checkbox" name="beginnerFriendly" id="beginnerFriendly"
+        <% if (beginnerFriendly) { %>
+        checked
+        <% } %>
+        />
+
+        <!-- submit form (button) -->
+        <button type="submit">Update</button>
+    </form>
+
+    <!-- method-override for PUT and DELETE -->
+    <form action="/games/<%=_id%>?_method=DELETE" method="POST">
+        <button type="submit">Delete <%= gameName %></button>
+    </form>
+    <a href="/games">Back to The Hoard</a>
 </body>
 </html>
+
+<!-- 
+SCHEMA REFERENCE:
+
+// defining schema for each board game
+const gameSchema = new mongoose.Schema({
+	gameName: String,
+	minPlayers: Number,
+	maxPlayers: Number,
+	playTime: Number,
+    aboutGame: String,
+	beginnerFriendly: Boolean,
+});
+
+-->

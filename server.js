@@ -81,6 +81,10 @@ app.get("/", async (req, res) => {
 app.get("/games", async (req, res) => {
 	// pulls all games from database (await so it won't move on)
 	const allGames = await Game.find();
+	// sorts alphabetically
+	await allGames.sort((a, b) => {
+		return a.gameName.localeCompare(b.gameName);
+	});
 	// renders index template
 	res.render("games/index.ejs", { games: allGames });
 });
@@ -95,10 +99,16 @@ app.get("/games/add", (req, res) => {
 
 // POST request; "/games" (behind the scenes operation)
 app.post("/games", async (req, res) => {
+	// adjusts beginnerFriendly prop in schema based on checkbox
+	if (req.body.beginnerFriendly === "on") {
+		req.body.beginnerFriendly = true;
+	} else {
+		req.body.beginnerFriendly = false;
+	}
 	// uses form data to fill in schema (no var needed)
-	await Game.create(req.body);
+	const newGame = await Game.create(req.body);
 	// renders "new game" form, not async - no DB interaction
-	res.redirect("/games");
+	res.redirect(`/games/${newGame._id}`);
 });
 
 /* SHOW PAGES */
@@ -108,26 +118,38 @@ app.get("/games/:gameId", async (req, res) => {
 	// grabs game by ID and stores in variable
 	const foundGame = await Game.findById(req.params.gameId);
 	// renders edit page with "game" as variable holding properties
-	res.render("games/show.ejs", { game: foundGame });
+	res.render("games/show.ejs", foundGame);
 });
 
 /* EDIT EXISTING GAME */
 
-// GET request; "/games/:gameId/edit" (edit game entry)
+// GET request; "/games/:gameId/edit" (edit game entry render)
 app.get("/games/:gameId/edit", async (req, res) => {
 	// identical to show page GET, except EJS template is different
 	const foundGame = await Game.findById(req.params.gameId);
-	res.render("games/edit.ejs", { game: foundGame });
+	res.render("games/edit.ejs", foundGame);
 });
 
-// NEEDS A PUT REQUEST TO TAKE FORM DATA AND PUSH TO DATABASE
+// PUT request; "/games/:gameId" (edit BTS - similar to add)
+app.put("/games/:gameId", async (req, res) => {
+	// adjusts beginnerFriendly prop in schema based on checkbox
+	if (req.body.beginnerFriendly === "on") {
+		req.body.beginnerFriendly = true;
+	} else {
+		req.body.beginnerFriendly = false;
+	}
+	// uses form data to fill in schema (no var needed)
+	await Game.findByIdAndUpdate(req.params.gameId, req.body);
+	// sends back to show page for edited game
+	res.redirect(`/games/${req.params.gameId}`);
+});
 
 /* DELETE EXISTING GAME */
 
-// GET request; "/games/:gameId" (show pages) [method-override]
+// DELETE request; "/games/:gameId" (show pages) [method-override]
 app.delete("/games/:gameId", async (req, res) => {
 	// locates game by unique database ID and deletes
 	await Game.findByIdAndDelete(req.params.gameId);
 	// redirects back to full game list
-	res.redirect("games/index.ejs");
+	res.redirect("/games");
 });

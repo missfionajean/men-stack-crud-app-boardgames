@@ -9,10 +9,14 @@
 	<body>
         <h1>The Hoard</h1>
         <p>Check out the board games currently in our collection:</p>
-		<% games.forEach( (game) => { %>
-		<li>
-			<a href="/games/<%= game._id %>"><%= game.name %></a>
-		</li>
-		<% }) %>
+		<ul>
+			<% games.forEach( (game) => { %>
+			<li>
+				<a href="/games/<%= game._id %>"><%= game.gameName %></a>
+			</li>
+			<% }) %>
+		</ul>
+		<a href="/games/add">Add New Game</a>
+		<a href="/">Back To Home</a>
     </body>
 </html>

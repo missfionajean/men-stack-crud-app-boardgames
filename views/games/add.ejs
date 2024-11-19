@@ -7,6 +7,7 @@
 		<title>Add Game</title>
 	</head>
 	<body>
+        <h1>Enter Game Details</h1>
 		<form action="/games" method="POST">
 			<!-- game name entry (text) -->
 			<label for="name">Game Name </label>
@@ -44,7 +45,11 @@
             <!-- beginner friendly entry (checkbox) -->
             <label for="beginnerFriendly">Is this game beginner friendly? </label>
             <input type="checkbox" name="beginnerFriendly" id="beginnerFriendly" />
+
+            <!-- submit form (button) -->
+            <button type="submit">Submit Game</button>
 		</form>
+        <a href="/games">Back to The Hoard</a>
 	</body>
 </html>
 

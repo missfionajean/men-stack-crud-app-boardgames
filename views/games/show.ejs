@@ -4,9 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css" />
-    <title><%= game.name %></title>
+    <title><%= gameName %></title>
 </head>
 <body>
-    
+    <h1><%= gameName %></h1>
+    <div id="game-info">
+        <h3>Players</h3>
+        <p><%= minPlayers %> to <%= maxPlayers %></p>
+        <h3>Play Time</h3>
+        <p><%= playTime %> Minutes</p>
+        <h3>Description</h3>
+        <p><%= aboutGame %></p>
+        <h3>Beginner Friendly?</h3>
+        <% if (beginnerFriendly) { %>
+        <p>Yes</p>
+        <% } else { %>
+        <p>No</p>
+        <% } %>
+    </div>
+    <a href="/games/<%= _id %>/edit">Edit/Delete Game</a>
+    <a href="/games">Back to The Hoard</a>
 </body>
 </html>
+
+<!-- 
+SCHEMA REFERENCE:
+
+// defining schema for each board game
+const gameSchema = new mongoose.Schema({
+	gameName: String,
+	minPlayers: Number,
+	maxPlayers: Number,
+	playTime: Number,
+    aboutGame: String,
+	beginnerFriendly: Boolean,
+});
+
+-->
