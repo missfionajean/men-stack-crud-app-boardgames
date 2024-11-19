@@ -7,7 +7,7 @@ const gameSchema = new mongoose.Schema({
 	minPlayers: String,
 	maxPlayers: String,
 	playTime: String,
-    aboutGame: String,
+	aboutGame: String,
 	beginnerFriendly: Boolean,
 });
 
