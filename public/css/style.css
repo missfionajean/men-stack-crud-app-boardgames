@@ -1,47 +1,142 @@
-@import url('https://fonts.googleapis.com/css2?family=Almendra:ital,wght@0,400;0,700;1,400;1,700&family=Texturina:ital,opsz,wght@0,12..72,100..900;1,12..72,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Almendra:ital,wght@0,400;0,700;1,400;1,700&family=Texturina:ital,opsz,wght@0,12..72,100..900;1,12..72,100..900&display=swap");
 
 * {
 	box-sizing: border-box;
-    color: white;
-    background-color: darkslategray;
-    font-family: "Almendra", sans-serif;
-    font-weight: 400;
+	color: white;
+	background-color: darkslategray;
+	font-family: "Almendra", sans-serif;
+	font-weight: 350;
+	font-size: 18px;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	margin: 2em;
+	display: flex;
+	flex-direction: column;
+	justify-self: center;
+	align-items: center;
+	width: 80dvw;
+	max-width: 700px;
+	gap: 1.2em;
 }
 
 h1 {
-    font-size: 40px;
+	font-size: 2.2em;
+}
+
+h2 {
+	font-size: 1.2em;
 }
 
 a {
-    text-decoration: none;
+	text-decoration: none;
 }
 
-p, label, input {
-    font-family: "Texturina", sans-serif;
-}
-
+p,
+a,
+label,
 input {
-    
+	font-family: "Texturina", sans-serif;
+	font-weight: 250;
+}
+
+ul {
+	display: flex;
+	flex-direction: column;
+	gap: 1em;
+    list-style-type: none;
+}
+
+#game-list {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    max-width: 400px;
+}
+
+#game-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: 80dvw;
+}
+
+#game-info h3 {
+    font-size: 1.2em;
+}
+
+#game-info p {
+    margin-block-end: 0.8em;
+}
+
+#show-head {
+    font-size: 2em;
+}
+
+#aboutGame {
+    height: 70px;
 }
 
 .button-box {
-    display: flex;
-    gap: 15px;
-    margin-top: 10px;
+	display: flex;
+	gap: 1em;
+	margin-top: 1em;
+	justify-content: center;
+    align-items: center;
 }
 
 button {
-    width: 200px;
-    height: 50px;
+	width: 250px;
+	height: 50px;
+	font-size: 1.1em;
 }
 
-a:hover, button:hover {
-    cursor: pointer;
-    color: indianred;
+a:hover,
+button:hover {
+	cursor: pointer;
+	color: indianred;
+}
+
+.page-head {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 5px;
 }
 
 .data-entry {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+@media (max-width: 500px) {
+	* {
+		font-size: 16px;
+	}
+
+	h1 {
+		font-size: 1.5em;
+	}
+
+    #collection-head {
+        font-size: 2em;
+    }
+
+    #show-head {
+        font-size: 1.6em;
+    }
+
+	.button-box {
+		display: flex;
+		flex-direction: column;
+		gap: 1em;
+	}
+
+	button {
+		width: 180px;
+		height: 40px;
+	}
 }

@@ -7,15 +7,17 @@
 		<title>Game Collection</title>
 	</head>
 	<body>
-        <h1>The Hoard</h1>
-        <p>Check out the board games currently in our collection:</p>
-		<ul>
-			<% games.forEach( (game) => { %>
-			<li>
-				<a href="/games/<%= game._id %>"><%= game.gameName %></a>
-			</li>
-			<% }) %>
-		</ul>
+		<h1 id="collection-head">The Hoard</h1>
+		<section id="game-list">
+			<h2>Board games in our collection:</h2>
+			<ul>
+				<% games.forEach( (game) => { %>
+				<li>
+					<a href="/games/<%= game._id %>"><%= game.gameName %></a>
+				</li>
+				<% }) %>
+			</ul>
+		</section>
 		<div class="button-box">
 			<form action="/games/add">
 				<button type="submit">Add New Game</button>
